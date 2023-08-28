@@ -1,0 +1,9 @@
+{
+      "rewrites":  [
+            {
+                  "source": "/player/static/:match",
+                  "destination": "/static/:match"
+            },
+            {"source": "/(.*)", "destination": "/"}
+      ]
+}
