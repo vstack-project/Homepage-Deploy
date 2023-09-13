@@ -296,6 +296,7 @@
 <section id="hls_video" >
       <h1 id="web_app_user">initDataUnsafe</h1>
       <h1 id="web_app_receiver">initData</h1>
+      <h1 id="web_app_result">send_result</h1>
 
 
       <h1>Hls.js demo - basic usage</h1>
@@ -307,10 +308,21 @@
 
 
       var web_app_user = document.getElementById('web_app_user');
-      web_app_user.innerHTML = JSON.stringify(Telegram.WebApp.initDataUnsafe);
+      web_app_user.innerHTML = JSON.stringify(
+            {
+                  query_id: Telegram.WebApp.initDataUnsafe,
+                  user: Telegram.WebApp.initDataUnsafe.user,
+                  receiver: Telegram.WebApp.initDataUnsafe.receiver
+            }
+      );
       
       var web_app_receiver = document.getElementById('web_app_receiver');
       web_app_receiver.innerHTML = Telegram.WebApp.initData;
+
+      var web_app_result = document.getElementById('web_app_result');
+
+      var res = Telegram.WebApp.answerWebAppQuery(Telegram.WebApp.initDataUnsafe.query_id, {}) 
+      web_app_user.innerHTML = JSON.stringify(res);
 
       var video = document.getElementById('video');
       if (Hls.isSupported()) {
